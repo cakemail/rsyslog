@@ -11,7 +11,7 @@ $FileGroup <%= node['rsyslog']['group'] %>
 
 
 $template MainQueue,"<%= node['rsyslog']['log_dir'] %>/mainqueue.log"
-$template precise,"%syslogpriority%,%syslogfacility%,%timegenerated%,%HOSTNAME%,%syslogtag%,%msg%\n"
+$template precise,"%syslogpriority%,%syslogfacility%,%timereported%,%HOSTNAME%,%syslogtag%,%msg%\n"
 
 $ActionFileDefaultTemplate precise
 
