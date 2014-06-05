@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+default['rsyslog']['per_host_source']           = '35-server-per-host.conf.erb'
 default['rsyslog']['log_dir']                   = '/srv/rsyslog'
 default['rsyslog']['server']                    = false
 default['rsyslog']['use_relp']                  = false
@@ -58,6 +59,11 @@ when 'ubuntu'
   if node['platform_version'].to_f < 10.10
     default['rsyslog']['user'] = 'syslog'
     default['rsyslog']['group'] = 'adm'
+    default['rsyslog']['priv_seperation'] = true
+  end
+  if node['platform_version'].to_f > 12.04
+    default['rsyslog']['user'] = 'syslog'
+    default['rsyslog']['group'] = 'syslog'
     default['rsyslog']['priv_seperation'] = true
   end
 when 'arch'

@@ -14,6 +14,8 @@ supports          'ubuntu'
 supports          'debian', '>= 5.0'
 supports          'redhat', '>= 6.0'
 
+depends           'apt'
+
 attribute 'rsyslog',
   :display_name => 'Rsyslog',
   :description => 'Hash of Rsyslog attributes',

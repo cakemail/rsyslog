@@ -30,7 +30,7 @@ directory node['rsyslog']['log_dir'] do
 end
 
 template "#{node['rsyslog']['config_prefix']}/rsyslog.d/35-server-per-host.conf" do
-  source   '35-server-per-host.conf.erb'
+  source   "#{node[:rsyslog][:per_host_source]}"
   owner    'root'
   group    'root'
   mode     '0644'

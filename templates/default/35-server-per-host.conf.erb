@@ -26,6 +26,17 @@ $template PerHostNewsNotice,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog
 $template PerHostDebug,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/debug"
 $template PerHostMessages,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/messages"
 
+$template PerHostApiCallsInfo,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apicalls.info"
+$template PerHostApiCallsCrit,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apicalls.crit"
+$template PerHostApiCallsWarn,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apicalls.warn"
+
+local3.info             ?PerHostApiCallsInfo
+& ~
+local3.crit             ?PerHostApiCallsCrit
+& ~
+local3.warn             ?PerHostApiCallsWarn
+& ~
+
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
 cron.*                  ?PerHostCron
@@ -42,6 +53,7 @@ mail.err                ?PerHostMailErr
 news.crit               ?PerHostNewsCrit
 news.err                ?PerHostNewsErr
 news.notice             -?PerHostNewsNotice
+
 
 *.=debug;\
   auth,authpriv.none;\
