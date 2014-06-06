@@ -50,7 +50,7 @@ end
 
 remote_type = node['rsyslog']['use_relp'] ? 'relp' : 'remote'
 
-template "#{node['rsyslog']['config_prefix']}/rsyslog.d/49-remote.conf" do
+template "#{node['rsyslog']['config_prefix']}/rsyslog.d/48-remote.conf" do
   source    "49-#{remote_type}.conf.erb"
   owner     'root'
   group     'root'
