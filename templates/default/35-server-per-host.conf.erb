@@ -25,16 +25,28 @@ $template PerHostNewsErr,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog'][
 $template PerHostNewsNotice,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/news.notice"
 $template PerHostDebug,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/debug"
 $template PerHostMessages,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/messages"
-
 $template PerHostApiCallsInfo,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apicalls.info"
 $template PerHostApiCallsCrit,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apicalls.crit"
 $template PerHostApiCallsWarn,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apicalls.warn"
+$template PerHostApacheLogsInfo,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apache.info"
+$template PerHostApacheLogsCrit,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apache.crit"
+$template PerHostApacheLogsWarn,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apache.warn"
+$template PerHostApacheLogsError,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apache.error"
 
 local3.info             ?PerHostApiCallsInfo
 & ~
 local3.crit             ?PerHostApiCallsCrit
 & ~
 local3.warn             ?PerHostApiCallsWarn
+& ~
+
+local7.info             ?PerHostApacheLogsInfo
+& ~
+local7.crit             ?PerHostApacheLogsCrit
+& ~
+local7.warn             ?PerHostApacheLogsWarn
+& ~
+local7.error            ?PerHostApacheLogsError
 & ~
 
 auth,authpriv.*         ?PerHostAuth
