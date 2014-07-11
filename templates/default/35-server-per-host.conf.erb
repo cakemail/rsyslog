@@ -33,20 +33,20 @@ $template PerHostApacheLogsCrit,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsy
 $template PerHostApacheLogsWarn,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apache.warn"
 $template PerHostApacheLogsError,"<%= node['rsyslog']['log_dir'] %>/<%= node['rsyslog']['per_host_dir'] %>/apache.error"
 
-local3.info             ?PerHostApiCallsInfo
-& ~
 local3.crit             ?PerHostApiCallsCrit
+& ~
+local3.info             ?PerHostApiCallsInfo
 & ~
 local3.warn             ?PerHostApiCallsWarn
 & ~
 
-local7.info             ?PerHostApacheLogsInfo
-& ~
 local7.crit             ?PerHostApacheLogsCrit
 & ~
-local7.warn             ?PerHostApacheLogsWarn
-& ~
 local7.error            ?PerHostApacheLogsError
+& ~
+local7.info             ?PerHostApacheLogsInfo
+& ~
+local7.warn             ?PerHostApacheLogsWarn
 & ~
 
 auth,authpriv.*         ?PerHostAuth
